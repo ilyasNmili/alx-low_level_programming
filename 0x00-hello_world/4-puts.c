@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 /**
- * print_message -  using puts
+ * main - Entry point of the program.
  * Return: 0
  */
 

@@ -1,16 +1,13 @@
 #include "main.h"
 
 /**
- * print_line - print the character "_" n times to draw a line
- * @n: number of characters to draw
+ * mul - multiplies two integers
+ * @a: one integer
+ * @b: second integer
+ * Return: product of a and b
  */
 
-void print_line(int n)
+int mul(int a, int b)
 {
-	int times = n;
-
-	for (times = n; times > 0; times--)
-		_putchar('_');
-
-	_putchar('\n');
+	return (a * b);
 }

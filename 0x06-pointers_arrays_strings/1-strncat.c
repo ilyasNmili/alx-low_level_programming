@@ -1,44 +1,31 @@
-#include "holberton.h"
+#include "main.h"
 
 /**
- * _memcpy - copy n bytes of memory from source to destination
- * @dest: destination
- * @src: source
- * @n: number of bytes
- * Return: pointer to dest
+ * _strncat - concatenates n bytes from a string to another
+ * @dest: destination string
+ * @src: source string
+ * @n: number of bytes of str to concatenate
+ *
+ * Return: a pointer to the resulting string dest
  */
-
-char *_memcpy(char *dest, char *src, unsigned int n)
+char *_strncat(char *dest, char *src, int n)
 {
+	int i, j;
 
-	int size = n; /* only accept positive sizes */
+	i = 0;
+	j = 0;
 
-	if (size > 0)
+	while (dest[i] != '\0')
+		i++;
+
+	while (src[j] != '\0' && j < n)
 	{
-		int i;
-
-		for (i = 0; i < size; i++)
-			dest[i] = src[i];
+		dest[i] = src[j];
+		i++;
+		j++;
 	}
+
+	dest[i] = '\0';
 
 	return (dest);
 }
-
-/* pointer arithmetic version
-
-char *_memcpy(char *dest, char *src, unsigned int n)
-{
-
-   int size = n;
-
-   if (size > 0)
-   {
-	int i;
-
-	for (i = 0; i < size; i++)
-		*(dest + i) = *(src + i);
-   }
-
-   return (dest);
-}
-*/

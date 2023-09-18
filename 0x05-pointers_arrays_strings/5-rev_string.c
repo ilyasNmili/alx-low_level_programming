@@ -2,11 +2,11 @@
 #include <stdio.h>
 
 /**
- * print_rev -  take char pointer
+ * rev_string -  take char pointer
  * @s: string
  */
 
-void print_rev(char *s)
+void rev_string(char *s)
 {
 	int size = 0;
 

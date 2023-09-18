@@ -12,7 +12,7 @@ void print_rev(char *s)
 
 	while (s[size])
 		size++;
-	while (size >= 0)
+	while (--size >= 0)
 	{
 		putchar(s[size]);
 		size--;

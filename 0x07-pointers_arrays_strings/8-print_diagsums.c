@@ -5,7 +5,7 @@
  * print_diagsums - print_diagsums
  * Return: void
  * @a: array
- * size: size
+ * @size: size
  */
 
 void print_diagsums(int *a, int size)

@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * strpbrk - return pointer
+ * _strpbrk - return pointer
  * Return: char pointer
  * @s: string
  * @accept: string
@@ -25,4 +25,3 @@ char *_strpbrk(char *s, char *accept)
 	}
 	return (0);
 }
-

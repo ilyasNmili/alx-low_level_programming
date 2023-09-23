@@ -6,22 +6,44 @@
  * Return: int
  * @n: integer
  */
+
 int change_cent(int n)
 {
 	int coins = 0;
 
-	if (n <= 0)
-		return (0);
-	if (n >= 25)
-		coins += 1 +  change_cent(n - 25);
-	else if (n >= 10)
-		coins += 1 + change_cent(n - 10);
-	else if (n >= 5)
-		coins += 1 + change_cent(n - 5);
-	else if (n >= 2)
-		coins += 1 + change_cent(n - 2);
-	else if (n > 0)
-		coins += 1 + change_cent(n - 1);
+	while (n > 0)
+	{
+		if (n % 100 == 0)
+		{
+			coins *= 4;
+			n /= 100;
+		}
+		else if (n >= 25)
+		{
+			coins += 1;
+			n -= 25;
+		}
+		else if (n >= 10)
+		{
+			coins += 1;
+			n -= 10;
+		}
+		else if (n >= 5)
+		{
+			coins += 1;
+			n -= 5;
+		}
+		else if (n >= 2)
+		{
+			coins += 1;
+			n -= 2;
+		}
+		else if (n == 1)
+		{
+			coins += 1;
+			n -= 1;
+		}
+	}
 	return (coins);
 }
 

@@ -1,6 +1,6 @@
 #include "main.h"
 #include <stdlib.h>
-
+#include <stdio.h>
 /**
  * str_concat - concatenete two strings
  * Return: char pointer
@@ -16,13 +16,15 @@ char *str_concat(char *s1, char *s2)
 	unsigned int i = 0;
 	char *str;
 
-	while (s1[size1])
-		size1++;
-	while (s2[size2])
-		size2++;
-	total_size = size1 + size2;
-	if (!total_size)
+	if (s1 == NULL && s2 == NULL)
 		return (NULL);
+	if (s1)
+		while (s1[size1])
+			size1++;
+	if (s2)
+		while (s2 && s2[size2] != '\0')
+			size2++;
+	total_size = size1 + size2;
 	str = (char *)malloc(total_size * sizeof(char) + 1);
 	if (!str)
 		return (NULL);

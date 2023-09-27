@@ -10,7 +10,7 @@
 int _atoi(char *s)
 {
 	int n = 0;
-	unsigned int signe = 1;
+	int signe = 1;
 
 	if (strcmp(s, "-2147483648") == 0)
 		return (-2147483648);
@@ -21,7 +21,7 @@ int _atoi(char *s)
 		s++;
 	}
 	while (*s && *s >= '0' && *s <= '9')
-	{	n = n * 10 + *s - '0';
+	{	n = n * 10 + (*s - '0');
 		s++;
 	}
 	return (signe * n);

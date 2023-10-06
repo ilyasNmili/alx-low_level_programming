@@ -13,9 +13,10 @@ int words_number(char *str)
 
 	while (str[i])
 	{
-		n++;
 		while (str[i] && str[i] == ' ')
 			i++;
+		if (str[i])
+			n++;
 		while (str[i] && str[i] != ' ')
 			i++;
 	}
@@ -34,7 +35,6 @@ int _size(char *str)
 		size++;
 	return (size);
 }
-
 /**
  * strtow - string to arraystring
  * Return: string
@@ -49,7 +49,7 @@ char **strtow(char *str)
 	int y = 0;
 	int size;
 
-	if (str == NULL || !(*str))
+	if (str == NULL || !(*str) || words_n == 0)
 		return (NULL);
 	ret = (char **)malloc((words_n + 1) * sizeof(char *));
 	if (!ret)

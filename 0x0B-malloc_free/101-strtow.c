@@ -13,13 +13,9 @@ int words_number(char *str)
 
 	while (str[i])
 	{
+		n++;
 		while (str[i] && str[i] == ' ')
 			i++;
-		if (str[i] && str[i] != ' ')
-		{
-			i++;
-			n++;
-		}
 		while (str[i] && str[i] != ' ')
 			i++;
 	}
@@ -38,6 +34,7 @@ int _size(char *str)
 		size++;
 	return (size);
 }
+
 /**
  * strtow - string to arraystring
  * Return: string

@@ -54,7 +54,7 @@ char **strtow(char *str)
 
 	if (str == NULL || !(*str))
 		return (NULL);
-	ret = (char **)malloc(words_n * sizeof(char *) + 1);
+	ret = (char **)malloc((words_n + 1) * sizeof(char *));
 	if (!ret)
 		return (NULL);
 	while (str[i])

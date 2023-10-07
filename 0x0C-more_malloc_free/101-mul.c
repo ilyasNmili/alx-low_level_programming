@@ -27,11 +27,11 @@ unsigned int _atoi(char *s)
 unsigned int  number_size(unsigned int n)
 {
 	unsigned int i = 0;
-
-	while (n != 0)
+	unsigned int tmp = n;
+	while (tmp != 0)
 	{
 		i++;
-		n /= 10;
+		tmp /= 10;
 	}
 	return (i);
 }
@@ -81,6 +81,7 @@ char *_strdup(char *str)
 	cpy[i] = '\0';
 	return (cpy);
 }
+
 /**
  * _itoa - int to str
  * Return: str
@@ -120,7 +121,6 @@ char *_itoa(int number)
 int main(int ac, char **av)
 {
 	unsigned int n;
-	unsigned int size_t;
 	char *str;
 	int i = 0;
 
@@ -130,12 +130,6 @@ int main(int ac, char **av)
 		exit(98);
 	}
 	n = _atoi(av[1]) + _atoi(av[2]);
-	size_t = number_size(n);
-	str = (char *)malloc(size_t + 1);
-	if (!str)
-	{
-		exit(-1);
-	}
 	str = _strdup(_itoa(n));
 	while (str[i])
 	{

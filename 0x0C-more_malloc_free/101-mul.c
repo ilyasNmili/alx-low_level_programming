@@ -8,58 +8,34 @@
  * @s: string
  */
 
-int _atoi(char *s)
+unsigned int _atoi(char *s)
 {
-	int n = 0;
-	int signe = 1;
+	unsigned int n = 0;
+	unsigned int i = 0;
 
-	/**
-	 * if (strcmp(s, "-2147483648") == 0)
-	 * return (-2147483648);
-	*/
-
-	while (*s && (*s < '0' || *s > '9'))
-	{
-		if (*s == '-')
-			signe *= -1;
-		s++;
+	while (s[i])
+	{	n = n * 10 + (s[i] - '0');
+		i++;
 	}
-	while (*s && *s >= '0' && *s <= '9')
-	{	n = n * 10 + (*s - '0');
-		s++;
-	}
-	return (signe * n);
+	return (n);
 }
-
 /**
- * print_number - takes number and print it
- * Return: void
+ * number_size - size
+ * Return: int
  * @n: number
- */
-
-void print_number(int n)
+*/
+unsigned int  number_size(unsigned int n)
 {
-	if (n == -2147483648)
-	{
-		_putchar('-');
-		_putchar('2');
-		print_number(147483648);
-		return;
-	}
+	unsigned int i = 0;
 
-	if (n < 0)
+	while (n != 0)
 	{
-		_putchar('-');
-		print_number(-n);
+		i++;
+		n /= 10;
 	}
-	if (n >= 0 && n <= 9)
-		_putchar('0' + n);
-	if (n > 9)
-	{
-		print_number(n / 10);
-		_putchar('0' + n % 10);
-	}
+	return (i);
 }
+
 /**
  * is_digit - is_digit
  * Return: bool
@@ -77,7 +53,63 @@ int is_digit(char *str)
 	}
 	return (1);
 }
+/**
+ * _strdup - string cpy with malloc
+ * Return: char pointer
+ * @str: string
+ */
 
+
+char *_strdup(char *str)
+{
+	unsigned int size = 0;
+	unsigned int i = 0;
+	char *cpy;
+
+	if (str == NULL)
+		return (NULL);
+	while (str[size])
+		size++;
+	cpy = (char *)malloc(size * sizeof(char) + 1);
+	if (!cpy)
+		return (NULL);
+	while (i < size)
+	{
+		cpy[i] = str[i];
+		i++;
+	}
+	cpy[i] = '\0';
+	return (cpy);
+}
+/**
+ * _itoa - int to str
+ * Return: str
+ * @number: int
+*/
+char *_itoa(int number)
+{
+	int numDigits = (number == 0) ? 1 : 0;
+	int temp = number;
+	char *result;
+	int index;
+
+	while (temp != 0)
+	{
+		temp /= 10;
+		numDigits++;
+	}
+	result = (char *)malloc(numDigits + 1);
+	index = numDigits;
+	result[index] = '\0';
+	while (number != 0)
+	{
+		index--;
+		result[index] = (number % 10) + '0';
+		number /= 10;
+	}
+
+	return (result);
+}
 /**
  * main - somme
  * Return: 0 in Success
@@ -87,12 +119,30 @@ int is_digit(char *str)
 
 int main(int ac, char **av)
 {
+	unsigned int n;
+	unsigned int size_t;
+	char *str;
+	int i = 0;
+
 	if (ac != 3 || !is_digit(av[1]) || !is_digit(av[2]))
 	{
 		write(1, "Error\n", 7);
 		exit(98);
 	}
-	print_number(_atoi(av[1]) + _atoi(av[2]));
+	n = _atoi(av[1]) + _atoi(av[2]);
+	size_t = number_size(n);
+	str = (char *)malloc(size_t + 1);
+	if (!str)
+	{
+		exit(-1);
+	}
+	str = _strdup(_itoa(n));
+	while (str[i])
+	{
+		_putchar(str[i]);
+		i++;
+	}
 	_putchar('\n');
+	free(str);
 	return (0);
 }

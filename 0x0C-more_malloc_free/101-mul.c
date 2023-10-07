@@ -28,6 +28,7 @@ unsigned int  number_size(unsigned int n)
 {
 	unsigned int i = 0;
 	unsigned int tmp = n;
+
 	while (tmp != 0)
 	{
 		i++;

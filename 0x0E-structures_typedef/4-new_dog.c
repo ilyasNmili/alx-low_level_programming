@@ -3,33 +3,20 @@
 #include <stdlib.h>
 
 /**
- * _strdup - string cpy with malloc
- * Return: char pointer
+ * _size - size
+ * Return: int
  * @str: string
- */
+*/
 
-
-char *_strdup(char *str)
+int _size(char *str)
 {
-	unsigned int size = 0;
-	unsigned int i = 0;
-	char *cpy;
+	int i = 0;
 
-	if (str == NULL)
-		return (NULL);
-	while (str[size])
-		size++;
-	cpy = (char *)malloc(size * sizeof(char) + 1);
-	if (!cpy)
-		return (NULL);
-	while (i < size)
-	{
-		cpy[i] = str[i];
+	while (str[i])
 		i++;
-	}
-	cpy[i] = '\0';
-	return (cpy);
+	return (i);
 }
+
 /**
  * new_dog - newdog
  * Return: dog struct
@@ -45,20 +32,21 @@ dog_t *new_dog(char *name, float age, char *owner)
 	dog = malloc(sizeof(dog_t));
 	if (!dog)
 		return (NULL);
-
-	dog->name = _strdup(name);
+	dog->name = malloc(sizeof(char) * (_size(name) + 1));
 	if (!dog->name)
 	{
 		free(dog);
 		return (NULL);
 	}
-	dog->age = age;
-	dog->owner = _strdup(owner);
+	dog->owner = malloc(sizeof(char) * (_size(owner) + 1));
 	if (!dog->owner)
 	{
 		free(dog);
-		free(name);
+		free(dog->name);
 		return (NULL);
 	}
+	dog->name = name;
+	dog->age = age;
+	dog->owner = owner;
 	return (dog);
 }
